@@ -1,22 +1,44 @@
 $(function () {
 
+    let productArray = [];
     let storageArray = [];
     load();
 
     function load() {
         fetch("https://webacademy.se/fakestore/")
             .then(resp => resp.json())
-            .then(data => render(data))
+            .then(function (data) {
+                render(data);
+                loadArray(data);
+            })
             .catch(err => console.error(err));
     }
     
+    function loadArray(json) {
+        json.forEach((product) => {
+            let prod = {
+                productID: product.id,
+                productTitle: product.title,
+                productDescription: product.description,
+                productImage: product.image,
+                productPrice: product.price,
+                productCategory: product.category
+            }
+            productArray.push(prod);
+        });
+        console.log(productArray[0]);
+        console.log(productArray[5]);
+    }
+
     function render(json) {
         console.log(json);
         let output = "";
-    
         json.forEach((product) => {
             output += `
-            <div id = "product" class = "col-3 border border-dark">
+            <div id = "product" class = "col-4 border border-dark">
+            <div id = "productID" style = "display: none;">
+            ${product.id}
+            </div>
             <p id = "productTitle">
             ${product.title}
             </p>
@@ -29,7 +51,7 @@ $(function () {
             </p>
             <div class = "p-2">
             <button class="btn btn-primary" id="addToCartBtn">
-            Add
+            Add to cart
             </button>
             </div>
             </div>
@@ -39,8 +61,14 @@ $(function () {
     }
 
     $(document).on("click", "#addToCartBtn", function() {
-        let item = $(this).
-        storageArray.push
+        for(let i = 0; i < productArray.length; i++) {
+            if(productArray[i].productID == $(this).closest("#product").find("#productID").text().trim()) {
+                storageArray.push(productArray[i]);
+                localStorage.setItem("cart", JSON.stringify(storageArray));
+                console.log(productArray[i].productID);
+                console.log(localStorage.getItem("cart"));
+            }
+        }
     })
 });
 
