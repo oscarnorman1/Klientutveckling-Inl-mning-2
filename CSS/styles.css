@@ -10,4 +10,35 @@
 h1 {
     text-align: center;
 }
-x
+
+#articleTable {
+    width: 50%;
+}
+
+#addProduct {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    text-align: center;
+}
+
+#cartQuantity {
+    width: 30px;
+    height: 25px;
+    font-size: 15px;
+    text-align: center;
+}
+
+#cartImage {
+    height: 100px;
+}
+
+#addOrRemoveOneProductBtn {
+    height: 25px;
+    width: 25px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    display: inline-block;
+
+}

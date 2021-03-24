@@ -27,7 +27,6 @@ $(function () {
             productArray.push(prod);
         });
         console.log(productArray[0]);
-        console.log(productArray[5]);
     }
 
     function render(json) {
@@ -47,7 +46,7 @@ $(function () {
             ${product.description}
             </p>
             <p id = "productPrice">
-            ${product.price}$
+            $${product.price}
             </p>
             <div class = "p-2">
             <button class="btn btn-primary" id="addToCartBtn">
@@ -65,8 +64,6 @@ $(function () {
             if(productArray[i].productID == $(this).closest("#product").find("#productID").text().trim()) {
                 storageArray.push(productArray[i]);
                 localStorage.setItem("cart", JSON.stringify(storageArray));
-                console.log(productArray[i].productID);
-                console.log(localStorage.getItem("cart"));
             }
         }
     })
