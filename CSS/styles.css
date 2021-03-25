@@ -33,7 +33,17 @@ h1 {
     height: 100px;
 }
 
-#addOrRemoveOneProductBtn {
+#addOneProduct {
+    height: 25px;
+    width: 25px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    display: inline-block;
+
+}
+
+#removeOneProduct {
     height: 25px;
     width: 25px;
     margin: 0 auto;
