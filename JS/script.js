@@ -33,14 +33,14 @@ $(function () {
     let output = "";
     json.forEach((product) => {
       output += `
-            <div id = "product" class = "col-4 border border-dark">
+            <div id = "product" class = "col-lg-4 col-sm-12 col-md-6 border border-dark">
             <div id = "productID" style = "display: none;">
             ${product.id}
             </div>
             <p id = "productTitle">
             ${product.title}
             </p>
-            <img src="${product.image}" alt="Product image" class = "img-fluid" style="width: 200px; height: 200px">
+            <img src="${product.image}" alt="Product image" class = "img-fluid" style="width: 150px; height: 150px">
             <p id = "productDescription">
             ${product.description}
             </p>
@@ -94,4 +94,5 @@ $(function () {
       }
     }
   });
-});
+
+  });

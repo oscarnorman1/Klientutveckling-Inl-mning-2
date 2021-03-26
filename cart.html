@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="CSS/styles.css" />
   </head>
   <body>
-    <button id="remove-localStorage">Clear</button>
-    <nav class="navbar navbar-expand-md bg-dark">
+    <nav class="navbar navbar-expand bg-dark">
       <div class="navbar-collapse collapse">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
@@ -34,8 +33,10 @@
         </ul>
       </div>
     </nav>
+    <button id="remove-localStorage">Clear</button>
     <h1>Cart</h1>
-    <table class="table table-striped table-hover container" id="articleTable">
+    <div class="container d-flex justify-content-center">
+    <table class="table table-striped table-hover" id="articleTable">
       <thead>
         <tr>
           <th scope="col" class="">Artiklar</th>
@@ -45,6 +46,13 @@
         
       </tbody>
     </table>
+  </div>
+
+  <div class = "container d-flex justify-content-start">
+    $100
+  </div>
+
+
 
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
