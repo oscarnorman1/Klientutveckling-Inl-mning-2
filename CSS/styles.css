@@ -12,7 +12,12 @@ h1 {
 }
 
 #articleTable {
-    width: 80%;
+    width: 100%;
+}
+
+#totalCost {
+    width: 100%;
+    font-weight: bold;
 }
 
 #addProduct {

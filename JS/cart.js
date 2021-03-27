@@ -1,7 +1,8 @@
 $(function () {
   let cartArray = [];
-  let totalCost = new Number();
   loadStorage();
+  let totalCost = loadPrice();
+  console.log(totalCost);
 
   function loadStorage() {
     let data = localStorage.getItem("cart");
@@ -43,6 +44,30 @@ $(function () {
       }
     }
   }
+  
+  $("#totalCost").prepend("$" + totalCost);
+
+  function loadPrice() {
+      let temp = 0;
+      for(let i = 0; i < cartArray.length; i++) {
+        temp += cartArray[i].productPrice * cartArray[i].productQuantity;
+      }
+      return temp.toFixed(2);
+  }
+
+  function updatePrice() {
+      totalCost = 0;
+
+      if(cartArray.length > 0) {
+        for(let i = 0; i < cartArray.length; i++) {
+          totalCost += cartArray[i].productPrice * cartArray[i].productQuantity;
+          $("#totalCost").html("$" + totalCost.toFixed(2));
+        }
+      } else {
+        $("#totalCost").html("$" + totalCost.toFixed(2));
+      }
+  
+  }
 
   $(document).on("click", "#remove-localStorage", function () {
     localStorage.clear();
@@ -53,6 +78,7 @@ $(function () {
       if (cartArray[i].productID == $(this).closest("#product").find("#productID").text().trim()) {
         cartArray[i].productQuantity++;
         console.log(cartArray[i].productQuantity);
+        updatePrice();
         $(this)
           .closest("#product")
           .find("#cartQuantity")
@@ -71,6 +97,7 @@ $(function () {
         if (cartArray[i].productQuantity > 1) {
           cartArray[i].productQuantity--;
           console.log(cartArray[i].productQuantity);
+          updatePrice();
           $(this)
             .closest("#product")
             .find("#cartQuantity")
@@ -86,10 +113,36 @@ $(function () {
         if(cartArray[i].productID == $(this).closest("#product").find("#productID").text().trim()) {
             cartArray.splice(i, 1);
             $(this).closest("#product").remove();
+            updatePrice();
             localStorage.setItem("cart", JSON.stringify(cartArray));
         }
     }
-    
   });
+
+  $(document).on("click", "#orderButton", function() {
+    validate();
+  })
+
+  function validate() {
+    const emailRGEX = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
+    const fullNameRGEX = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/
+    const phoneNumberRGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
+    const addressRGEX = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/
+    let email = $("#inputEmail").val();
+    let fullName = $("#inputFullName").val();
+    let phoneNumber = $("#inputPhoneNumber").val();
+    let address = $("#inputAddress").val();
+    
+    // TODO FIXA REGEX!!!!
+
+    console.log("NAME REGEX");
+    console.log(fullNameRGEX.test(fullName));
+    console.log("EMAIL REGEX");
+    console.log(emailRGEX.test(email));
+    console.log("PHONE NUMBER REGEX");
+    console.log(phoneNumberRGEX.test(phoneNumber));
+    console.log("ADDRESS REGEX");
+    console.log(addressRGEX.test(address));
+  }
 
 });
