@@ -127,7 +127,6 @@ $(function () {
     const emailRGEX = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
     const fullNameRGEX = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/
     const phoneNumberRGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
-    const addressRGEX = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/
     let email = $("#inputEmail").val();
     let fullName = $("#inputFullName").val();
     let phoneNumber = $("#inputPhoneNumber").val();
@@ -142,7 +141,40 @@ $(function () {
     console.log("PHONE NUMBER REGEX");
     console.log(phoneNumberRGEX.test(phoneNumber));
     console.log("ADDRESS REGEX");
-    console.log(addressRGEX.test(address));
+    console.log(address.length > 0);
+  
+    if(!fullNameRGEX.test(fullName)) {
+      $("#fullNameValidationText").html("");
+      $("#fullNameValidationText").prepend("Enter a valid full name!");
+    }
+
+    if(!emailRGEX.test(email)) {
+      $("#emailValidationText").html("");
+      $("#emailValidationText").prepend("Enter a valid email!");
+    }
+
+    if(!phoneNumberRGEX.test(phoneNumber)) {
+      $("#phoneNumberValidationText").html("");
+      $("#phoneNumberValidationText").prepend("Enter a valid phone number!");
+    }
+
+    if(address.length === 0) {
+      $("#addressValidationText").html("");
+      $("#addressValidationText").prepend("Enter a valid address!");
+    }
+    
+    if(fullNameRGEX.test(fullName) && emailRGEX.test(email) && 
+       phoneNumberRGEX.test(phoneNumber) && address.length > 0) {
+      alert("Order skickad!");
+      $("#fullNameValidationText").html("");
+      $("#emailValidationText").html("");
+      $("#phoneNumberValidationText").html("");
+      $("#addressValidationText").html("");
+
+      localStorage.clear();
+      window.location.href = "index.html";
+    }
+  
   }
 
 });

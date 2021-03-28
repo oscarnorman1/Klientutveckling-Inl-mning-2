@@ -65,29 +65,33 @@
   </div>
 
   <form class = "container px-5" id ="orderForm">
-    <div class="row">
+    <div class="row pb-1">
     <div class="form-group col-6">
         <label for="inputFullNameLabel">Full name: </label>
         <input type="email" class = "form-control" id="inputFullName" placeholder="Enter your full name">
+        <div id = "fullNameValidationText" style="color: red;"></div>
     </div>
     <div class="form-group col-6">
       <label for="inputEmailLabel">Email: </label>
       <input type="email" class = "form-control" id="inputEmail" placeholder="Enter your email">
+      <div id="emailValidationText" style="color: red;"></div>
   </div>
   </div>
   <div class="row">
     <div class="form-group col-6">
         <label for="inputPhoneNumberLabel">Phone number: </label>
         <input type="email" class = "form-control" id="inputPhoneNumber" placeholder="Enter your phone number">
-    </div>
+        <div id="phoneNumberValidationText" style="color: red;"></div>
+      </div>
     <div class="form-group col-6">
       <label for="inputAddressLabel">Address: </label>
       <input type="email" class = "form-control" id="inputAddress" placeholder="Enter your address">
-  </div>
+      <div id="addressValidationText" style="color: red;"></div>
+    </div>
   </div>
   </form>
 
-  <div class = "container justify-content-left pt-3 ps-5">
+  <div class = "container justify-content-left pt-3 ps-5 pb-5">
     <button class = "btn btn-primary" id ="orderButton">Order!</button>
   </div>
 
