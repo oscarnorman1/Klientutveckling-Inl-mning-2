@@ -2,13 +2,11 @@ $(function () {
   let cartArray = [];
   loadStorage();
   let totalCost = loadPrice();
-  console.log(totalCost);
 
   function loadStorage() {
     let data = localStorage.getItem("cart");
     if (data != null) {
       cartArray = JSON.parse(data);
-      console.log(cartArray);
     }
 
     if (cartArray.length > 0) {
@@ -69,15 +67,10 @@ $(function () {
   
   }
 
-  $(document).on("click", "#remove-localStorage", function () {
-    localStorage.clear();
-  });
-
   $(document).on("click", "#addOneProduct", function () {
     for (let i = 0; i < cartArray.length; i++) {
       if (cartArray[i].productID == $(this).closest("#product").find("#productID").text().trim()) {
         cartArray[i].productQuantity++;
-        console.log(cartArray[i].productQuantity);
         updatePrice();
         $(this)
           .closest("#product")
@@ -96,7 +89,6 @@ $(function () {
       ) {
         if (cartArray[i].productQuantity > 1) {
           cartArray[i].productQuantity--;
-          console.log(cartArray[i].productQuantity);
           updatePrice();
           $(this)
             .closest("#product")
@@ -131,17 +123,6 @@ $(function () {
     let fullName = $("#inputFullName").val();
     let phoneNumber = $("#inputPhoneNumber").val();
     let address = $("#inputAddress").val();
-    
-    // TODO FIXA REGEX!!!!
-
-    console.log("NAME REGEX");
-    console.log(fullNameRGEX.test(fullName));
-    console.log("EMAIL REGEX");
-    console.log(emailRGEX.test(email));
-    console.log("PHONE NUMBER REGEX");
-    console.log(phoneNumberRGEX.test(phoneNumber));
-    console.log("ADDRESS REGEX");
-    console.log(address.length > 0);
   
     if(!fullNameRGEX.test(fullName)) {
       $("#fullNameValidationText").html("");

@@ -62,7 +62,6 @@ $(function () {
     let data = localStorage.getItem("cart");
     if (data != null) {
       cartArray = JSON.parse(data);
-      console.log(cartArray);
     }
   }
 
@@ -70,9 +69,7 @@ $(function () {
     for (let i = 0; i < productArray.length; i++) {
       if (productArray[i].productID == $(this).closest("#product").find("#productID").text().trim()) {
         
-        console.log(cartArray);
         if (cartArray.length == 0 || cartArray == undefined) {
-          console.log("La in objekt i cart när cartArray length är 0");
           cartArray.push(productArray[i]);
           localStorage.setItem("cart", JSON.stringify(cartArray));
           return;
@@ -80,14 +77,12 @@ $(function () {
           for (let j = 0; j < cartArray.length; j++) {
             for (let k = 0; k < productArray.length; k++) {
               if (productArray[i].productID == cartArray[j].productID) {
-                console.log("Hittade duplett! Ökade quantity med 1");
                 cartArray[j].productQuantity++;
                 localStorage.setItem("cart", JSON.stringify(cartArray));
                 return;
               }
             }
           }
-          console.log("Hittade ej duplett! Lade in produkt i cartArray");
           cartArray.push(productArray[i]);
           localStorage.setItem("cart", JSON.stringify(cartArray));
         }
